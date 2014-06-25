@@ -36,7 +36,7 @@ var serveGzip = func(w http.ResponseWriter, r *http.Request, c Context) {
 }
 
 // All returns a Handler that adds gzip compression to all requests
-func GzipHandler() Handler {
+func Gzip() Handler {
 	return serveGzip
 }
 
