@@ -33,7 +33,7 @@ type Cotex struct {
 // if cookie secret is set to "", then SetSecureCookie would not work
 func ContextRender(cookiesecret string, options ...RenderOptions) Handler {
 	return func(w http.ResponseWriter, req *http.Request, c Context) {
-		rd := Renderer(w, req, c, options...)
+		rd := Renderor(w, req, c, options...)
 
 		rd.Data["RequestTimes"] = time.Since(rd.Data["RequestStartTime"].(time.Time)).Nanoseconds() / 1e6
 		rd.Data["RequestStartTime"] = nil //set zero to clean up the RequestStartTime

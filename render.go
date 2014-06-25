@@ -414,26 +414,25 @@ func (r *Render) prepareHTMLRenderOptions(htmlOpt []HTMLRenderOptions) HTMLRende
 //
 // If MARTINI_ENV is set to "" or "development" then templates will be recompiled on every request. For more performance, set the
 // MARTINI_ENV environment variable to "production"
-/*
-func Renderer(options ...RenderOptions) martini.Handler {
+
+func Renderer(options ...RenderOptions) Handler {
 	opt := prepareRenderOptions(options)
 	cs := prepareCharset(opt.Charset)
 	t := compile(opt)
-	return func(res http.ResponseWriter, req *http.Request, c martini.Context) {
+	return func(res http.ResponseWriter, req *http.Request, c Context) {
 		var tc *template.Template
-		if martini.Env == martini.Dev {
+		if Env == Dev {
 			// recompile for easy development
 			tc = compile(opt)
 		} else {
 			// use a clone of the initial template
 			tc, _ = t.Clone()
 		}
-		c.MapTo(&Render{res, req, tc, opt, cs, TmplData{}, time.Time{}}, (*Render)(nil))
+		c.MapTo(&Render{res, req, tc, opt, cs, Data}, (*Render)(nil))
 	}
 }
-*/
 
-func Renderer(res http.ResponseWriter, req *http.Request, c Context, options ...RenderOptions) *Render {
+func Renderor(res http.ResponseWriter, req *http.Request, c Context, options ...RenderOptions) *Render {
 
 	if Data["RequestStartTime"] == nil {
 		Data["RequestStartTime"] = time.Now()

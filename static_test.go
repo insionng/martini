@@ -7,7 +7,7 @@ import (
 	"net/http/httptest"
 	"testing"
 
-	"github.com/insionng/inject"
+	"github.com/insionng/martini/inject"
 )
 
 func Test_Static(t *testing.T) {
