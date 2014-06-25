@@ -429,8 +429,7 @@ func Renderer(options ...RenderOptions) Handler {
 			tc, _ = t.Clone()
 		}
 		//c.MapTo(&Render{res, req, tc, opt, cs, Data}, (*Render)(nil))
-		rd := &Render{res, req, tc, opt, cs, Data}
-		c.Map(rd)
+		c.Map(&Render{res, req, tc, opt, cs, Data})
 	}
 }
 
