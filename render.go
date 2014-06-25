@@ -428,7 +428,9 @@ func Renderer(options ...RenderOptions) Handler {
 			// use a clone of the initial template
 			tc, _ = t.Clone()
 		}
-		c.MapTo(&Render{res, req, tc, opt, cs, Data}, (*Render)(nil))
+		//c.MapTo(&Render{res, req, tc, opt, cs, Data}, (*Render)(nil))
+		rd := &Render{res, req, tc, opt, cs, Data}
+		c.Map(rd)
 	}
 }
 
