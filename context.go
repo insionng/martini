@@ -35,8 +35,10 @@ func ContextRender(cookiesecret string, options ...RenderOptions) Handler {
 	return func(w http.ResponseWriter, req *http.Request, c Context) {
 		rd := Renderor(w, req, c, options...)
 
-		rd.Data["RequestTimes"] = time.Since(rd.Data["RequestStartTime"].(time.Time)).Nanoseconds() / 1e6
-		rd.Data["RequestStartTime"] = nil //set zero to clean up the RequestStartTime
+		if rd.Data["RequestStartTime"] != nil {
+			rd.Data["RequestTimes"] = time.Since(rd.Data["RequestStartTime"].(time.Time)).Nanoseconds() / 1e6
+			rd.Data["RequestStartTime"] = nil //set zero to clean up the RequestStartTime
+		}
 
 		ctx := &Cotex{req, map[string]string{}, cookiesecret, w, rd}
 		//set some default headers
