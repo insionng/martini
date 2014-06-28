@@ -11,43 +11,43 @@ func Test_Routing(t *testing.T) {
 	router := NewRouter()
 	recorder := httptest.NewRecorder()
 
-	req, _ := http.NewRequest("GET", "http://localhost:3000/foo", nil)
+	req, _ := http.NewRequest("GET", "http://localhost:9000/foo", nil)
 	context := New().createContext(recorder, req)
 
-	req2, _ := http.NewRequest("POST", "http://localhost:3000/bar/bat", nil)
+	req2, _ := http.NewRequest("POST", "http://localhost:9000/bar/bat", nil)
 	context2 := New().createContext(recorder, req2)
 
-	req3, _ := http.NewRequest("DELETE", "http://localhost:3000/baz", nil)
+	req3, _ := http.NewRequest("DELETE", "http://localhost:9000/baz", nil)
 	context3 := New().createContext(recorder, req3)
 
-	req4, _ := http.NewRequest("PATCH", "http://localhost:3000/bar/foo", nil)
+	req4, _ := http.NewRequest("PATCH", "http://localhost:9000/bar/foo", nil)
 	context4 := New().createContext(recorder, req4)
 
-	req5, _ := http.NewRequest("GET", "http://localhost:3000/fez/this/should/match", nil)
+	req5, _ := http.NewRequest("GET", "http://localhost:9000/fez/this/should/match", nil)
 	context5 := New().createContext(recorder, req5)
 
-	req6, _ := http.NewRequest("PUT", "http://localhost:3000/pop/blah/blah/blah/bap/foo/", nil)
+	req6, _ := http.NewRequest("PUT", "http://localhost:9000/pop/blah/blah/blah/bap/foo/", nil)
 	context6 := New().createContext(recorder, req6)
 
-	req7, _ := http.NewRequest("DELETE", "http://localhost:3000/wap//pow", nil)
+	req7, _ := http.NewRequest("DELETE", "http://localhost:9000/wap//pow", nil)
 	context7 := New().createContext(recorder, req7)
 
-	req8, _ := http.NewRequest("HEAD", "http://localhost:3000/wap//pow", nil)
+	req8, _ := http.NewRequest("HEAD", "http://localhost:9000/wap//pow", nil)
 	context8 := New().createContext(recorder, req8)
 
-	req9, _ := http.NewRequest("OPTIONS", "http://localhost:3000/opts", nil)
+	req9, _ := http.NewRequest("OPTIONS", "http://localhost:9000/opts", nil)
 	context9 := New().createContext(recorder, req9)
 
-	req10, _ := http.NewRequest("HEAD", "http://localhost:3000/foo", nil)
+	req10, _ := http.NewRequest("HEAD", "http://localhost:9000/foo", nil)
 	context10 := New().createContext(recorder, req10)
 
-	req11, _ := http.NewRequest("GET", "http://localhost:3000/bazz/inga", nil)
+	req11, _ := http.NewRequest("GET", "http://localhost:9000/bazz/inga", nil)
 	context11 := New().createContext(recorder, req11)
 
-	req12, _ := http.NewRequest("POST", "http://localhost:3000/bazz/inga", nil)
+	req12, _ := http.NewRequest("POST", "http://localhost:9000/bazz/inga", nil)
 	context12 := New().createContext(recorder, req12)
 
-	req13, _ := http.NewRequest("GET", "http://localhost:3000/bazz/in/ga", nil)
+	req13, _ := http.NewRequest("GET", "http://localhost:9000/bazz/in/ga", nil)
 	context13 := New().createContext(recorder, req13)
 
 	result := ""
@@ -149,7 +149,7 @@ func Test_RouterHandlerStatusCode(t *testing.T) {
 
 	// code should be 200 if none is returned from the handler
 	recorder := httptest.NewRecorder()
-	req, _ := http.NewRequest("GET", "http://localhost:3000/foo", nil)
+	req, _ := http.NewRequest("GET", "http://localhost:9000/foo", nil)
 	context := New().createContext(recorder, req)
 	router.Handle(recorder, req, context)
 	expect(t, recorder.Code, http.StatusOK)
@@ -157,7 +157,7 @@ func Test_RouterHandlerStatusCode(t *testing.T) {
 
 	// if a status code is returned, it should be used
 	recorder = httptest.NewRecorder()
-	req, _ = http.NewRequest("GET", "http://localhost:3000/bar", nil)
+	req, _ = http.NewRequest("GET", "http://localhost:9000/bar", nil)
 	context = New().createContext(recorder, req)
 	router.Handle(recorder, req, context)
 	expect(t, recorder.Code, http.StatusForbidden)
@@ -165,7 +165,7 @@ func Test_RouterHandlerStatusCode(t *testing.T) {
 
 	// shouldn't use the first returned value as a status code if not an integer
 	recorder = httptest.NewRecorder()
-	req, _ = http.NewRequest("GET", "http://localhost:3000/baz", nil)
+	req, _ = http.NewRequest("GET", "http://localhost:9000/baz", nil)
 	context = New().createContext(recorder, req)
 	router.Handle(recorder, req, context)
 	expect(t, recorder.Code, http.StatusOK)
@@ -173,7 +173,7 @@ func Test_RouterHandlerStatusCode(t *testing.T) {
 
 	// Should render bytes as a return value as well.
 	recorder = httptest.NewRecorder()
-	req, _ = http.NewRequest("GET", "http://localhost:3000/bytes", nil)
+	req, _ = http.NewRequest("GET", "http://localhost:9000/bytes", nil)
 	context = New().createContext(recorder, req)
 	router.Handle(recorder, req, context)
 	expect(t, recorder.Code, http.StatusOK)
@@ -181,7 +181,7 @@ func Test_RouterHandlerStatusCode(t *testing.T) {
 
 	// Should render interface{} values.
 	recorder = httptest.NewRecorder()
-	req, _ = http.NewRequest("GET", "http://localhost:3000/interface", nil)
+	req, _ = http.NewRequest("GET", "http://localhost:9000/interface", nil)
 	context = New().createContext(recorder, req)
 	router.Handle(recorder, req, context)
 	expect(t, recorder.Code, http.StatusOK)
@@ -192,7 +192,7 @@ func Test_RouterHandlerStacking(t *testing.T) {
 	router := NewRouter()
 	recorder := httptest.NewRecorder()
 
-	req, _ := http.NewRequest("GET", "http://localhost:3000/foo", nil)
+	req, _ := http.NewRequest("GET", "http://localhost:9000/foo", nil)
 	context := New().createContext(recorder, req)
 
 	result := ""
@@ -255,7 +255,7 @@ func Test_MethodsFor(t *testing.T) {
 	router := NewRouter()
 	recorder := httptest.NewRecorder()
 
-	req, _ := http.NewRequest("POST", "http://localhost:3000/foo", nil)
+	req, _ := http.NewRequest("POST", "http://localhost:9000/foo", nil)
 	context := New().createContext(recorder, req)
 	context.MapTo(router, (*Routes)(nil))
 	router.Post("/foo/bar", func() {
@@ -286,7 +286,7 @@ func Test_NotFound(t *testing.T) {
 	router := NewRouter()
 	recorder := httptest.NewRecorder()
 
-	req, _ := http.NewRequest("GET", "http://localhost:3000/foo", nil)
+	req, _ := http.NewRequest("GET", "http://localhost:9000/foo", nil)
 	context := New().createContext(recorder, req)
 
 	router.NotFound(func(res http.ResponseWriter) {
@@ -302,7 +302,7 @@ func Test_NotFoundAsHandler(t *testing.T) {
 	router := NewRouter()
 	recorder := httptest.NewRecorder()
 
-	req, _ := http.NewRequest("GET", "http://localhost:3000/foo", nil)
+	req, _ := http.NewRequest("GET", "http://localhost:9000/foo", nil)
 	context := New().createContext(recorder, req)
 
 	router.NotFound(func() string {
@@ -342,7 +342,7 @@ func Test_NotFoundStacking(t *testing.T) {
 	router := NewRouter()
 	recorder := httptest.NewRecorder()
 
-	req, _ := http.NewRequest("GET", "http://localhost:3000/foo", nil)
+	req, _ := http.NewRequest("GET", "http://localhost:9000/foo", nil)
 	context := New().createContext(recorder, req)
 
 	result := ""
@@ -380,7 +380,7 @@ func Test_Any(t *testing.T) {
 	})
 
 	recorder := httptest.NewRecorder()
-	req, _ := http.NewRequest("GET", "http://localhost:3000/foo", nil)
+	req, _ := http.NewRequest("GET", "http://localhost:9000/foo", nil)
 	context := New().createContext(recorder, req)
 	router.Handle(recorder, req, context)
 
@@ -388,7 +388,7 @@ func Test_Any(t *testing.T) {
 	expect(t, recorder.Body.String(), "Nope\n")
 
 	recorder = httptest.NewRecorder()
-	req, _ = http.NewRequest("PUT", "http://localhost:3000/foo", nil)
+	req, _ = http.NewRequest("PUT", "http://localhost:9000/foo", nil)
 	context = New().createContext(recorder, req)
 	router.Handle(recorder, req, context)
 
@@ -420,7 +420,7 @@ func Test_URLFor(t *testing.T) {
 
 	// code should be 200 if none is returned from the handler
 	recorder := httptest.NewRecorder()
-	req, _ := http.NewRequest("GET", "http://localhost:3000/bar/foo/bar", nil)
+	req, _ := http.NewRequest("GET", "http://localhost:9000/bar/foo/bar", nil)
 	context := New().createContext(recorder, req)
 	context.MapTo(router, (*Routes)(nil))
 	router.Handle(recorder, req, context)
@@ -454,7 +454,7 @@ func Test_ActiveRoute(t *testing.T) {
 
 	// code should be 200 if none is returned from the handler
 	recorder := httptest.NewRecorder()
-	req, _ := http.NewRequest("GET", "http://localhost:3000/foo", nil)
+	req, _ := http.NewRequest("GET", "http://localhost:9000/foo", nil)
 	context := New().createContext(recorder, req)
 	context.MapTo(router, (*Routes)(nil))
 	router.Handle(recorder, req, context)

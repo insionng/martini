@@ -411,7 +411,7 @@ func Test_Render_Error500(t *testing.T) {
 }
 
 func Test_Render_Redirect_Default(t *testing.T) {
-	url, _ := url.Parse("http://localhost/path/one")
+	url, _ := url.Parse("http://localhost:9000/path/one")
 	req := http.Request{
 		Method: "GET",
 		URL:    url,
@@ -426,7 +426,7 @@ func Test_Render_Redirect_Default(t *testing.T) {
 }
 
 func Test_Render_Redirect_Code(t *testing.T) {
-	url, _ := url.Parse("http://localhost/path/one")
+	url, _ := url.Parse("http://localhost:9000/path/one")
 	req := http.Request{
 		Method: "GET",
 		URL:    url,

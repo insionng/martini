@@ -20,7 +20,7 @@ func Test_Logger(t *testing.T) {
 		res.WriteHeader(http.StatusNotFound)
 	})
 
-	req, err := http.NewRequest("GET", "http://localhost:3000/foobar", nil)
+	req, err := http.NewRequest("GET", "http://localhost:9000/foobar", nil)
 	if err != nil {
 		t.Error(err)
 	}

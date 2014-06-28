@@ -69,7 +69,7 @@ func (m *Martini) ServeHTTP(res http.ResponseWriter, req *http.Request) {
 	m.createContext(res, req).run()
 }
 
-// Run the http server. Listening on os.GetEnv("PORT") or 9000 by default.
+// Run the http server. Listening on os.GetEnv("PORT") or 3000 by default.
 func (m *Martini) Run() {
 	port := os.Getenv("PORT")
 	if port == "" {
